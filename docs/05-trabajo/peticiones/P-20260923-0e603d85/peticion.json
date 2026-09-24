@@ -1,0 +1,64 @@
+{
+  "aclaraciones": [],
+  "actualizada": "2026-09-23T21:45:31+00:00",
+  "cierres": [],
+  "creada": "2026-09-23T21:42:29+00:00",
+  "estado": "encaminada",
+  "evaluaciones": [
+    {
+      "carril_provisional": "documental",
+      "codigo": {
+        "rutas": [
+          "src/"
+        ],
+        "sha": "1131e1f39d725f0c790070aa8cfa1c7f100be684"
+      },
+      "conocimiento": [
+        "docs/03-investigacion/revision-1/SINTESIS.md"
+      ],
+      "fecha": "2026-09-23T21:43:36+00:00",
+      "flujo": {
+        "huella": "58951521d14895057c5162ade24aedb8ecf115e66b6ebef46df208a73a137fb1",
+        "refs": [
+          "REC-1"
+        ]
+      },
+      "investigacion": {
+        "disparadores": [
+          "El usuario solicita reconstruir la especificación del Nivel 1 y preparar la migración futura a Godot Web 16:9 sin implementar."
+        ],
+        "motivo": "La petición depende de evidencia del ROM, síntesis de investigación existente y contraste con el prototipo; la salida es documental y no modifica el producto ni los planos compilados. Se acota al Nivel 1.",
+        "perfil": "acotada",
+        "preguntas": [
+          "¿Qué comportamiento del Nivel 1 está verificado, qué queda incierto y cómo se representa sin inventar datos para una futura migración a Godot Web 16:9?"
+        ],
+        "sintesis_plataforma": null
+      },
+      "revision": 1,
+      "ruta_provisional": "documental",
+      "tipo_provisional": "documentacion"
+    }
+  ],
+  "formato": 1,
+  "id": "P-20260923-0e603d85",
+  "original": {
+    "autor": "usuario",
+    "resumen": "Reconstruir la especificación verificable del Nivel 1 y preparar su adaptación futura a Godot Web 16:9 con compatibilidad multijugador futura",
+    "texto": "Usar el trabajo existente de ingeniería inversa, documentación y prototipo HTML para auditar, clasificar y documentar las mecánicas y enemigos; crear la leyenda, coordenadas, plano y JSON del Nivel 1 original; proponer su adaptación Web 16:9; registrar diferencias, verificación y plan futuro de migración a Godot/Web/QR. No implementar Godot, networking, assets definitivos, Nivel 2 ni corregir el HTML. El formato debe dejar preparados Player 1/Player 2, players[], player_id, session_id y game_id."
+  },
+  "procesos": [
+    {
+      "contrato_terminal": "unidad-mergeada-v1",
+      "estado": "pendiente",
+      "fecha": "2026-09-23T21:45:31+00:00",
+      "ref": "005-reconstruccion-nivel-1-godot-web",
+      "relacion": "satisface",
+      "revision": 1,
+      "tipo": "unidad"
+    }
+  ],
+  "reclamos": [],
+  "relaciones": [],
+  "responsable": null,
+  "revision": 1
+}

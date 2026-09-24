@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource path="res://scripts/PhysicsSandbox.gd" type="Script" id="1_sandbox"]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id="2_player"]
+[ext_resource path="res://scripts/TestPlatform.gd" type="Script" id="3_platform"]
+
+[sub_resource type="RectangleShape2D" id="Rect_floor"]
+size = Vector2(820, 28)
+
+[sub_resource type="RectangleShape2D" id="Rect_mid"]
+size = Vector2(260, 24)
+
+[sub_resource type="RectangleShape2D" id="Rect_high"]
+size = Vector2(220, 24)
+
+[node name="PhysicsSandbox" type="Node2D"]
+script = ExtResource("1_sandbox")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(640, 450)
+preview_only = false
+use_preview_bounds = false
+jump_speed = -620.0
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(640, 590)
+script = ExtResource("3_platform")
+platform_size = Vector2(820, 28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("Rect_floor")
+
+[node name="MiddlePlatform" type="StaticBody2D" parent="."]
+position = Vector2(470, 470)
+script = ExtResource("3_platform")
+platform_size = Vector2(260, 24)
+platform_color = Color(0.956, 0.788, 0.357, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiddlePlatform"]
+shape = SubResource("Rect_mid")
+
+[node name="HighPlatform" type="StaticBody2D" parent="."]
+position = Vector2(790, 350)
+script = ExtResource("3_platform")
+platform_size = Vector2(220, 24)
+platform_color = Color(0.741, 0.514, 0.847, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HighPlatform"]
+shape = SubResource("Rect_high")

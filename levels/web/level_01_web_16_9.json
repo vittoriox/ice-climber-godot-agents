@@ -1,0 +1,26 @@
+{
+  "metadata":{"id":"level_01_web_16_9","source_level":"level_01_original","status":"proposal","adaptation":"16:9_without_horizontal_stretch","traceability_required":true,"future_multiplayer_ready":true},
+  "dimensions":{"width":1280,"height":720,"unit":"logical_pixel_candidate","status":"PROPUESTO"},
+  "aspect_ratio":"16:9",
+  "grid":{"width":40,"height":40,"status":"PROPUESTO","source_grid":"8x8_representation"},
+  "coordinate_system":{"origin":"top_left","x_axis":"right","y_axis":"down","playable_transform":"center_original_ratio","visual_extra":"non_playable_until_playtest"},
+  "areas":{"playable":{"x":160,"y":0,"width":960,"height":720,"aspect_ratio":"4:3_preserved","source":"original_ratio_preserved"},"visual":[{"id":"visual_left","x":0,"y":0,"width":160,"height":720,"playable":false},{"id":"visual_right","x":1120,"y":0,"width":160,"height":720,"playable":false}],"safe":{"x":200,"y":32,"width":880,"height":656,"status":"PROPOSED"},"touch_left":{"x":16,"y":560,"width":128,"height":136,"symbols":["TA"],"playable":false},"touch_right":{"x":1136,"y":560,"width":128,"height":136,"symbols":["TJ","TK"],"playable":false},"side_panels":{"left":{"x":0,"y":0,"width":160,"height":520,"purpose":["player_state_animation","environmental_visuals"]},"right":{"x":1120,"y":0,"width":160,"height":520,"purpose":["player_state_animation","environmental_visuals"]}}},
+  "objects":[
+    {"id":"SP1-01","symbol":"SP1","type":"spawn.player_1","source_id":"SP1-01","x":null,"y":null,"status":"TRACE_ONLY"},
+    {"id":"SP2-01","symbol":"SP2","type":"spawn.player_2_reserved","source_id":"SP2-01","x":null,"y":null,"status":"FUTURE_RESERVED"},
+    {"id":"F01-01","symbol":"B","type":"floor.breakable","source_id":"F01-01","x":null,"y":null,"status":"TRACE_ONLY"},
+    {"id":"F02-01","symbol":"B","type":"floor.breakable","source_id":"F02-01","x":null,"y":null,"status":"TRACE_ONLY"},
+    {"id":"F03-01","symbol":"P","type":"floor.solid_or_mixed","source_id":"F03-01","x":null,"y":null,"status":"TRACE_ONLY"},
+    {"id":"F04-01","symbol":"P","type":"floor.solid_or_mixed","source_id":"F04-01","x":null,"y":null,"status":"TRACE_ONLY"},
+    {"id":"F05-01","symbol":"B","type":"floor.breakable","source_id":"F05-01","x":null,"y":null,"status":"TRACE_ONLY"},
+    {"id":"F06-01","symbol":"P","type":"floor.solid_or_mixed","source_id":"F06-01","x":null,"y":null,"status":"TRACE_ONLY"},
+    {"id":"F07-01","symbol":"B","type":"floor.breakable","source_id":"F07-01","x":null,"y":null,"status":"TRACE_ONLY"},
+    {"id":"F08-01","symbol":"P","type":"floor.solid_or_mixed","source_id":"F08-01","x":null,"y":null,"status":"TRACE_ONLY"},
+    {"id":"E1-01","symbol":"E1","type":"enemy.topi","source_id":"E1-01","x":null,"y":null,"status":"TRACE_ONLY"},
+    {"id":"E2-01","symbol":"E2","type":"enemy.nitpicker","source_id":"E2-01","x":null,"y":null,"status":"TRACE_ONLY"},
+    {"id":"E3-01","symbol":"E3","type":"enemy.polar_bear","source_id":"E3-01","x":null,"y":null,"status":"TRACE_ONLY"},
+    {"id":"H-01","symbol":"H","type":"hazard.icicle","source_id":"H-01","x":null,"y":null,"status":"TRACE_ONLY"}
+  ],
+  "players":[{"player_id":"P1","spawn_id":"SP1-01","score_mode":"individual","state":"independent"},{"player_id":"P2","spawn_id":"SP2-01","score_mode":"individual_or_cooperative_future","state":"independent"}],
+  "session_id":null,"game_id":null,"networking":{"implemented":false,"future_server_authority":true},"differences_documented_in":"docs/levels/LEVEL_01_ADAPTATION.md"
+}
