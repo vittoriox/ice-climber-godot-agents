@@ -3,6 +3,9 @@ extends CharacterBody2D
 
 ## Prototipo visual y de input. No representa todavía la física verificada del ROM.
 
+signal hammer_hit(origin: Vector2, direction: float)
+signal damaged
+
 @export var player_id := "P1"
 @export var preview_only := true
 @export var use_preview_bounds := true
@@ -12,15 +15,21 @@ var jump_speed := -470.0
 var virtual_left := false
 var virtual_right := false
 var virtual_jump := false
+var virtual_jump_requested := false
 var virtual_attack := false
 var facing := 1.0
+var damage_cooldown := 0.0
+var damage_flash := 0.0
 var attack_timer := 0.0
 var attack_cooldown := 0.0
 
 func _ready() -> void:
+	z_index = 10
 	queue_redraw()
 
 func _physics_process(delta: float) -> void:
+	damage_cooldown = maxf(damage_cooldown - delta, 0.0)
+	damage_flash = maxf(damage_flash - delta, 0.0)
 	attack_timer = maxf(attack_timer - delta, 0.0)
 	attack_cooldown = maxf(attack_cooldown - delta, 0.0)
 	var direction := Input.get_axis("move_left", "move_right")
@@ -38,12 +47,15 @@ func _physics_process(delta: float) -> void:
 		facing = sign(direction)
 	velocity.y += gravity * delta
 	var preview_grounded := global_position.y >= 549.0
-	if (virtual_jump or Input.is_action_just_pressed("jump") or Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_UP) or Input.is_key_pressed(KEY_SPACE)) and (is_on_floor() or preview_grounded):
+	var jump_requested := virtual_jump_requested
+	virtual_jump_requested = false
+	if (jump_requested or virtual_jump or Input.is_action_just_pressed("jump") or Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_K) or Input.is_key_pressed(KEY_UP) or Input.is_key_pressed(KEY_SPACE)) and (is_on_floor() or preview_grounded):
 		velocity.y = jump_speed
 	var attack_requested := virtual_attack or Input.is_key_pressed(KEY_J)
 	if attack_requested and attack_cooldown <= 0.0:
 		attack_timer = 0.24
 		attack_cooldown = 0.34
+		hammer_hit.emit(global_position + Vector2(0, -12), facing)
 	move_and_slide()
 	if use_preview_bounds:
 		global_position.x = clamp(global_position.x, 190.0, 1090.0)
@@ -53,10 +65,25 @@ func _physics_process(delta: float) -> void:
 		set_floor_snap_length(8.0)
 	queue_redraw()
 
+func take_damage(source_position: Vector2) -> void:
+	if damage_cooldown > 0.0:
+		return
+	damage_cooldown = 1.0
+	damage_flash = 0.24
+	velocity.x = -sign(source_position.x - global_position.x) * 260.0
+	# Damage pushes the climber sideways, but does not grant an artificial
+	# upward jump that could be used to reach platforms.
+	velocity.y = 0.0
+	damaged.emit()
+	queue_redraw()
+
 func _draw() -> void:
 	var ice := Color("53c7e8")
 	var coat := Color("28688b")
 	var skin := Color("ffd2a1")
+	if damage_flash > 0.0:
+		ice = Color("ff8e9e")
+		coat = Color("a33f5c")
 	# Shadow and body silhouette.
 	_draw_ellipse_custom(Vector2(0, 31), Vector2(25, 7), Color(0.0, 0.0, 0.0, 0.25))
 	draw_circle(Vector2(0, -31), 14.0, skin)
